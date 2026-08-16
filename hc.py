@@ -2,8 +2,9 @@ import streamlit as st
 import joblib 
 
 # Load trained model and TF-IDF vectorizer
-model = joblib.load("C:/Users/Harshit/Downloads/best_sentiment_model.pkl")
-tfidf = joblib.load("C:/Users/Harshit/Downloads/tfidf_vectorizer.pkl")
+# Load model and TF-IDF vectorizer using relative paths
+model = joblib.load("best_sentiment_model.pkl")
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
 st.set_page_config(
     page_title="Amazon Review Sentiment Analysis",
     page_icon="🛒",
