@@ -1,5 +1,5 @@
 import streamlit as st
-import joblib
+from sklearn.externals import joblib 
 
 # Load trained model and TF-IDF vectorizer
 model = joblib.load("C:/Users/Harshit/Downloads/best_sentiment_model.pkl")
