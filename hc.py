@@ -1,4 +1,5 @@
 import joblib
+import textblob
 import streamlit as st
 
 # Load trained model and TF-IDF vectorizer
