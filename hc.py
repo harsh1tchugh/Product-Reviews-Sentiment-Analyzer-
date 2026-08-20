@@ -1,80 +1,113 @@
+import joblib
 import streamlit as st
-import joblib 
 
 # Load trained model and TF-IDF vectorizer
 model = joblib.load("best_sentiment_model.pkl")
-tfidf = joblib.load("tfidf_vectorizer.pkl")  # Changed variable name to 'tfidf'
+tfidf = joblib.load("tfidf_vectorizer.pkl")
 
 st.set_page_config(
     page_title="Product Review Sentiment Analysis",
     page_icon="🛒",
-    layout="centered"
+    layout="centered",
 )
 
 st.markdown(
     """
 <style>
-/* Force the root app container to purplish-white */
+/* Richer Lilac/Purple Background */
 .stApp, [data-testid="stAppViewContainer"], .main {
-    background: #f4effa !important; /* Soft lavender-white */
+    background: linear-gradient(135deg, #e3d5f3 0%, #ede4f7 50%, #d8c4ee 100%) !important;
     color: #000000 !important;
 }
 
-/* Ensure all global text, labels, and paragraph elements are black */
-.stApp p, .stApp label, .stApp span, .stApp div {
+/* Ensure body text and labels stay pitch-black */
+.stApp p, .stApp label, .stApp span, .stApp div, .stApp h3 {
     color: #000000 !important;
 }
 
-/* Goldenrod title */
+/* Goldenrod title with strong contrast */
 .big-title {
     text-align: center;
     color: #DAA520 !important;
-    font-size: 54px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 50px !important;
+    font-weight: 800 !important;
+    margin-bottom: 0px !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Clear black subtitle */
 .subtitle {
     text-align: center;
-    color: #000000 !important;
-    font-size: 18px;
-    font-weight: 500;
+    color: #1a1a1a !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-top: 5px !important;
 }
 
-/* Custom Result Box with clear dark text */
-.result {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #e6dbf4 !important;
-    color: #000000 !important;
-    border: 1px solid #c8b3e6 !important;
-}
-
-/* Fix input text box background and text readability */
+/* Fix Textarea styling */
 textarea, input {
     background-color: #ffffff !important;
     color: #000000 !important;
-    border: 1px solid #dcd0ea !important;
+    border: 2px solid #b39ddb !important;
+    border-radius: 8px !important;
+}
+
+/* Fix Button background, border, and text visibility */
+div.stButton > button {
+    background-color: #ffffff !important;
+    color: #4a148c !important;
+    border: 2px solid #8e24aa !important;
+    font-weight: bold !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+div.stButton > button:hover {
+    background-color: #8e24aa !important;
+    color: #ffffff !important;
+    border-color: #8e24aa !important;
+}
+
+div.stButton > button p {
+    color: inherit !important;
+}
+
+/* Custom Lilac styling for st.info box */
+div[data-testid="stNotification"] {
+    background-color: #d1c4e9 !important;
+    color: #000000 !important;
+    border: 1px solid #b39ddb !important;
+    border-radius: 8px !important;
+}
+
+div[data-testid="stNotification"] p, div[data-testid="stNotification"] li {
+    color: #000000 !important;
+}
+
+/* Force dark text inside alert banners */
+.stAlert p {
+    color: #000000 !important;
 }
 </style>
 """,
     unsafe_allow_html=True,
 )
 
-st.markdown('<p class="big-title">🛒 Product Review Sentiment Analysis</p>', unsafe_allow_html=True)
-
-st.markdown('<p class="subtitle">Machine Learning Based Sentiment Classifier</p>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="big-title">🛒 Product Review Sentiment Analysis</p>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<p class="subtitle">Machine Learning Based Sentiment Classifier</p>',
+    unsafe_allow_html=True,
+)
 
 st.divider()
 
 review = st.text_area(
     "✍ Enter Product Review",
     height=180,
-    placeholder="Example: This phone is amazing. Battery backup is excellent."
+    placeholder="Example: This phone is amazing. Battery backup is excellent.",
 )
 
 col1, col2 = st.columns(2)
@@ -86,19 +119,17 @@ with col2:
     clear = st.button("🗑 Clear", use_container_width=True)
 
 if predict:
-
     if review.strip() == "":
         st.warning("Please enter a review.")
     else:
-
         review_vector = tfidf.transform([review])
-
         prediction = model.predict(review_vector)[0]
 
         if prediction == 1:
-            st.success("😊 Congratulations! A Positive Review,You can buy this product.")
+            st.success(
+                "😊 Congratulations! A Positive Review, You can buy this product."
+            )
             st.balloons()
-
         else:
             st.error("😞 Oops...!!! Negative Review")
 
@@ -125,4 +156,3 @@ st.info("""
 - Scikit-learn
 - Streamlit
 """)
-
