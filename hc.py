@@ -14,39 +14,51 @@ st.set_page_config(
 st.markdown(
     """
 <style>
-/* Purplish-whitish soft gradient background */
-.main {
-    background: linear-gradient(135deg, #f3f0f7 0%, #ffffff 50%, #eae4f2 100%);
-    color: #000000;
+/* Force the root app container to purplish-white */
+.stApp, [data-testid="stAppViewContainer"], .main {
+    background: #f4effa !important; /* Soft lavender-white */
+    color: #000000 !important;
 }
 
-/* Title with Goldenrod color and subtle text glow */
+/* Ensure all global text, labels, and paragraph elements are black */
+.stApp p, .stApp label, .stApp span, .stApp div {
+    color: #000000 !important;
+}
+
+/* Goldenrod title */
 .big-title {
     text-align: center;
-    color: #DAA520; /* Goldenrod */
+    color: #DAA520 !important;
     font-size: 54px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    margin-bottom: 5px;
 }
 
-/* Subtitle with dark black text */
+/* Clear black subtitle */
 .subtitle {
     text-align: center;
-    color: #1a1a1a;
+    color: #000000 !important;
     font-size: 18px;
     font-weight: 500;
 }
 
-/* Result box with light purple fill, border, and black text */
+/* Custom Result Box with clear dark text */
 .result {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     text-align: center;
     padding: 15px;
     border-radius: 10px;
-    background-color: #f0eaf8;
-    color: #000000;
-    border: 1px solid #dcd0ea;
+    background-color: #e6dbf4 !important;
+    color: #000000 !important;
+    border: 1px solid #c8b3e6 !important;
+}
+
+/* Fix input text box background and text readability */
+textarea, input {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #dcd0ea !important;
 }
 </style>
 """,
