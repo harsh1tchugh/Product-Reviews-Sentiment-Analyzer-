@@ -50,7 +50,7 @@ st.markdown(
 }
 </style>
 """,
-    unsafe_allow_html="true",
+    unsafe_allow_html=True,
 )
 
 st.markdown('<p class="big-title">🛒 Product Review Sentiment Analysis</p>', unsafe_allow_html=True)
