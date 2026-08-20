@@ -72,26 +72,35 @@ div.stButton > button p {
     color: inherit !important;
 }
 
-/* OVERRIDE ST.INFO CONTAINER (FORCE LILAC BACKGROUND & PURPLE BORDER) */
-div[data-testid="stAlert"],
-div[data-testid="stAlert"] > div,
-.stAlert {
+/* ONLY ST.INFO GETS LILAC */
+div[data-testid="stAlertContainer-info"] div[data-testid="stAlert"],
+div[aria-label="info"] {
     background-color: #d1c4e9 !important;
     border: 1px solid #9c27b0 !important;
-    color: #000000 !important;
 }
 
-/* Ensure text inside st.info stays black */
-div[data-testid="stAlert"] p, 
-div[data-testid="stAlert"] li, 
-div[data-testid="stAlert"] strong {
-    color: #000000 !important;
-}
-
-/* Override Streamlit's default blue SVG icon inside st.info */
-div[data-testid="stAlert"] svg {
+div[data-testid="stAlertContainer-info"] svg {
     fill: #4a148c !important;
     color: #4a148c !important;
+}
+
+/* RESTORE GREEN FOR ST.SUCCESS */
+div[data-testid="stAlertContainer-success"] div[data-testid="stAlert"],
+div[aria-label="success"] {
+    background-color: #d4edda !important;
+    border: 1px solid #28a745 !important;
+}
+
+/* RESTORE RED FOR ST.ERROR */
+div[data-testid="stAlertContainer-error"] div[data-testid="stAlert"],
+div[aria-label="error"] {
+    background-color: #f8d7da !important;
+    border: 1px solid #dc3545 !important;
+}
+
+/* Force dark text inside all alert banners */
+.stAlert p, .stAlert li, .stAlert strong {
+    color: #000000 !important;
 }
 </style>
 """,
