@@ -72,21 +72,26 @@ div.stButton > button p {
     color: inherit !important;
 }
 
-/* Custom Lilac styling for st.info box */
-div[data-testid="stNotification"] {
+/* OVERRIDE ST.INFO CONTAINER (FORCE LILAC BACKGROUND & PURPLE BORDER) */
+div[data-testid="stAlert"],
+div[data-testid="stAlert"] > div,
+.stAlert {
     background-color: #d1c4e9 !important;
-    color: #000000 !important;
-    border: 1px solid #b39ddb !important;
-    border-radius: 8px !important;
-}
-
-div[data-testid="stNotification"] p, div[data-testid="stNotification"] li {
+    border: 1px solid #9c27b0 !important;
     color: #000000 !important;
 }
 
-/* Force dark text inside alert banners */
-.stAlert p {
+/* Ensure text inside st.info stays black */
+div[data-testid="stAlert"] p, 
+div[data-testid="stAlert"] li, 
+div[data-testid="stAlert"] strong {
     color: #000000 !important;
+}
+
+/* Override Streamlit's default blue SVG icon inside st.info */
+div[data-testid="stAlert"] svg {
+    fill: #4a148c !important;
+    color: #4a148c !important;
 }
 </style>
 """,
